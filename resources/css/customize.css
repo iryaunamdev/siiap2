@@ -1,0 +1,180 @@
+ .reverse {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+}
+
+.w-sm{
+    @apply w-fit;
+}
+
+.badge-primary {
+    @apply inline-block whitespace-nowrap rounded bg-blue-500 px-2.5 py-0.5 text-center align-baseline text-[0.75em] font-bold leading-none text-blue-100;
+}
+
+.badge-secondary {
+    @apply inline-block whitespace-nowrap rounded bg-gray-400 px-2.5 py-0.5 text-center align-baseline text-[0.75em] font-bold leading-none text-gray-800;
+}
+
+.badge-success {
+    @apply inline-block whitespace-nowrap rounded bg-green-300 px-2.5 py-0.5 text-center align-baseline text-[0.75em] font-bold leading-none text-green-700;
+}
+
+.badge-info {
+    @apply inline-block whitespace-nowrap rounded bg-cyan-300 px-2.5 py-0.5 text-center align-baseline text-[0.75em] font-bold leading-none text-cyan-800;
+}
+
+.badge-warning {
+    @apply inline-block whitespace-nowrap rounded bg-amber-200 px-2.5 py-0.5 text-center align-baseline text-[0.75em] font-bold leading-none text-amber-800;
+}
+
+.badge-danger{
+    @apply inline-block whitespace-nowrap rounded bg-red-300 px-2.5 py-0.5 text-center align-baseline text-[0.75em] font-bold leading-none text-red-700;
+}
+
+.badge-light{
+    @apply inline-block whitespace-nowrap rounded bg-neutral-50 px-2.5 py-0.5 text-center align-baseline text-[0.75em] font-bold leading-none text-neutral-600;
+}
+
+.badge-dark{
+    @apply inline-block whitespace-nowrap rounded bg-neutral-800 px-2.5 py-0.5 text-center align-baseline text-[0.75em] font-bold leading-none text-neutral-50 dark:bg-neutral-900;
+}
+
+.button-primary {
+    @apply inline-flex items-center px-4 py-2 bg-blue-700 border border-transparent text-xs text-white uppercase tracking-widest hover:bg-blue-500 focus:bg-blue-500 active:bg-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-400 focus:ring-offset-1 disabled:opacity-50 transition ease-in-out duration-150;
+}
+
+.button-danger {
+    @apply inline-flex items-center justify-center px-4 py-2 bg-red-600 border border-transparent text-xs text-white uppercase tracking-widest hover:bg-red-500 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150;
+}
+
+.button-secondary {
+    @apply inline-flex items-center px-4 py-2 bg-white border border-gray-300 text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-1 disabled:opacity-25 transition ease-in-out duration-150;
+}
+
+.button-rounded-primary{
+    @apply h-fit inline-block rounded-full bg-blue-600 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-blue-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-blue-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-blue-600 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]
+}
+
+.container-1 {
+    @apply p-6 bg-white border-b border-gray-200;
+}
+
+.container-2 {
+    @apply bg-gray-200 bg-opacity-25;
+}
+
+.link-primary {
+    @apply text-blue-500 transition duration-150 ease-in-out hover:text-blue-600 focus:text-blue-600 active:text-blue-700 dark:text-blue-400 dark:hover:text-blue-500 dark:focus:text-blue-500 dark:active:text-blue-600 h-auto;
+}
+
+.link-secondary {
+    @apply text-gray-500 transition duration-150 ease-in-out hover:text-gray-600 focus:text-gray-600 active:text-gray-700;
+}
+
+.link-info{
+    @apply text-cyan-400 transition duration-150 ease-in-out hover:text-cyan-600 focus:text-cyan-600 active:text-cyan-700;
+}
+
+.link-danger{
+    @apply text-red-500 transition duration-150 ease-in-out hover:text-red-600 focus:text-red-600 active:text-red-700;
+}
+
+.pill-primary {
+    @apply inline-block whitespace-nowrap rounded-full bg-blue-100 px-2.5 py-1 text-center align-baseline text-[0.75em] font-bold leading-none text-blue-700 h-fit m-auto;
+}
+
+.pill-primary-600 {
+    @apply inline-block whitespace-nowrap rounded-full bg-blue-600 px-2.5 py-1 text-center align-baseline text-[0.75em] font-bold leading-none text-white h-fit m-auto;
+}
+
+.pill-info {
+    @apply inline-block whitespace-nowrap rounded-full bg-cyan-100 px-2.5 py-1 text-center align-baseline text-[0.75em] font-bold leading-none text-cyan-800 h-fit m-auto;
+}
+
+.pill-secondary {
+    @apply inline-block whitespace-nowrap rounded-full bg-gray-100 px-2.5 py-1 text-center align-baseline text-[0.75em] font-bold leading-none text-gray-800 h-fit m-auto;
+}
+
+.pill-danger {
+    @apply inline-block whitespace-nowrap rounded-full bg-red-100 px-2.5 py-1 text-center align-baseline text-[0.75em] font-bold leading-none text-red-700 h-fit m-auto;
+}
+
+.pill-warning {
+    @apply inline-block whitespace-nowrap rounded-full bg-amber-100 px-2.5 py-1 text-center align-baseline text-[0.75em] font-bold leading-none text-amber-800 h-fit m-auto;
+}
+
+.pill-success {
+    @apply inline-block whitespace-nowrap rounded-full bg-green-100 px-2.5 py-1 text-center align-baseline text-[0.75em] font-bold leading-none text-green-700 h-fit m-auto;
+}
+
+.pill-light {
+    @apply inline-block whitespace-nowrap rounded-full bg-neutral-50 px-2.5 py-1 text-center align-baseline text-[0.75em] font-bold leading-none text-neutral-600 h-fit m-auto;
+}
+
+.pill-dark {
+    @apply inline-block whitespace-nowrap rounded-full bg-neutral-800 px-2.5 py-1 text-center align-baseline text-[0.75em] font-bold leading-none text-neutral-50 dark:bg-neutral-900;
+}
+
+.sidemenu{
+    @apply w-1/6;
+}
+
+.switch-primary {
+    @apply mr-2 mt-[0.3rem] h-3.5 w-8 appearance-none rounded-[0.4375rem] bg-neutral-300 before:pointer-events-none before:absolute before:h-3.5 before:w-3.5 before:rounded-full before:bg-transparent before:content-[''] after:absolute after:z-[2] after:-mt-[0.1875rem] after:h-5 after:w-5 after:rounded-full after:border-none after:bg-neutral-100 after:shadow-[0_0px_3px_0_rgb(0_0_0_/_7%),_0_2px_2px_0_rgb(0_0_0_/_4%)] after:transition-[background-color_0.2s,transform_0.2s] after:content-[''] checked:bg-blue-600 checked:after:absolute checked:after:z-[2] checked:after:-mt-[3px] checked:after:ml-[1.0625rem] checked:after:h-5 checked:after:w-5 checked:after:rounded-full checked:after:border-none checked:after:bg-blue-600 checked:after:shadow-[0_3px_1px_-2px_rgba(0,0,0,0.2),_0_2px_2px_0_rgba(0,0,0,0.14),_0_1px_5px_0_rgba(0,0,0,0.12)] checked:after:transition-[background-color_0.2s,transform_0.2s] checked:after:content-[''] hover:cursor-pointer focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[3px_-1px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-5 focus:after:w-5 focus:after:rounded-full focus:after:content-[''] checked:focus:border-blue-600 checked:focus:bg-blue-600 checked:focus:before:ml-[1.0625rem] checked:focus:before:scale-100 checked:focus:before:shadow-[3px_-1px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:bg-neutral-600 dark:after:bg-neutral-400 dark:checked:bg-blue-500 dark:checked:after:bg-blue-600 dark:focus:before:shadow-[3px_-1px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:before:shadow-[3px_-1px_0px_13px_#3b71ca];
+}
+
+.title-1 {
+    @apply text-blue-900 text-lg leading-none;
+}
+
+.t-head{
+    @apply text-[0.65rem] uppercase font-semibold text-left;
+}
+
+.t-body{
+    @apply text-sm font-light text-left bg-white;
+}
+
+.tr {
+    @apply border-b px-2;
+}
+
+.th{
+    @apply py-4 px-4 text-gray-500;
+}
+
+.td {
+    @apply py-1 px-2 text-sm;
+}
+
+.td-1 {
+    @apply py-2 px-2 text-sm;
+}
+
+.td-2 {
+    @apply py-2 px-2 text-xs
+}
+
+.table {
+    @apply shadow w-full overflow-y-auto border-b border-gray-200 dark:border-gray-700 sm:rounded-lg;
+}
+
+.thead{
+    @apply bg-gray-50 text-xs uppercase text-gray-500;
+}
+
+.tr-strip{
+    @apply odd:bg-white even:bg-gray-50 border-b border-y p-2;
+
+}
+
+@media print {
+    /* All your print styles go here */
+    #header, #footer, #nav { display: none !important; }
+    html { overflow: hidden;}
+    #PDF { overflow: auto;}
+    #PDF::-webkit-scrollbar { width: 0 !important }
+    #PDF { overflow: -moz-scrollbars-none; }
+   }
+
+
