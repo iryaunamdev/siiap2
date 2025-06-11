@@ -25,7 +25,7 @@
 
     @include('layouts.delete-confirmation-modal')
 
-    <x-dialog-modal wire:model="showEditModal" maxWidth="sm">
+    <x-dialog-modal wire:model="showEditModal" maxWidth="md">
         <x-slot name="title">
             {{ $card_title }}
         </x-slot>
@@ -41,11 +41,11 @@
                     </x-select-float>
                     <x-label-float value="Semestre" />
                 </div>
-                <div class="relative col-span-7">
-                    <x-select-float wire:model='adscripcion_id' :error="$errors->first('adscripcion_id')">
+                <div class="relative col-span-full">
+                    <x-select-float wire:model='adscripcion_id' :error="$errors->first('adscripcion_id')" class="text-sm">
                         <option value="" hidden selected></option>
                         @foreach ($c_adscripciones as $item)
-                            <option value="{{ $item->id }}">{{ $item->clave }}</option>
+                            <option value="{{ $item->id }}">{{ $item->nombre }}</option>
                         @endforeach
                     </x-select-float>
                     <x-label-float value="Adscripción" />
@@ -66,14 +66,14 @@
         </x-slot>
     </x-dialog-modal>
 
-    <x-dialog-modal wire:model="showCTModal" maxWidth="sm">
+    <x-dialog-modal wire:model="showCTModal" maxWidth="md">
         <x-slot name="title">
             {{ $card_title }}
         </x-slot>
         <x-slot name="content">
             <div class="grid grid-cols-12 gap-4">
                 <div class="relative col-span-12">
-                    <x-select-float wire:model='tutor_id' :error="$errors->first('tutor_id')">
+                    <x-select-float wire:model='tutor_id' :error="$errors->first('tutor_id')" class="text-sm">
                         <option value="" hidden selected></option>
                         @foreach ($c_tutores as $item)
                             <option value="{{ $item->id }}">{{ $item->fullname }}</option>

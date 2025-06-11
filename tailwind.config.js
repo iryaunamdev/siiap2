@@ -15,6 +15,9 @@ export default {
         "./node_modules/flowbite/**/*.js",
         ],
 
+    jit: false,
+    darkMode: false,
+
     theme: {
         extend: {
             fontFamily: {

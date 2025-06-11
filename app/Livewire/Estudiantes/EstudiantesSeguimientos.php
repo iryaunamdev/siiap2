@@ -29,7 +29,7 @@ class EstudiantesSeguimientos extends Component
     public function mount(){
         $this->c_tipos = CatalogoItem::whereRelation('catalogo', 'clave', 'TSEG')->where('activo', true)->get()->sortBy('nombre');
         $this->c_estatus = CatalogoItem::whereRelation('catalogo', 'clave', 'ESTSEG')->where('activo', true)->get()->sortBy('nombre');
-        $this->c_tutores = Tutor::where('activo', true)->get()->sortBy('fullname');
+        $this->c_tutores = Tutor::where('activo', true)->get()->sortBy('fullname')->pluck('fullname', 'id')->toArray();
     }
 
     public function editSeguimiento(EstudianteSeguimiento $seguimiento = null){

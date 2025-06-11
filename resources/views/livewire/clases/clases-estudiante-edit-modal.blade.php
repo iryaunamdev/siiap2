@@ -5,10 +5,10 @@
     <x-slot name="content">
         <form class="grid grid-cols-12 gap-4">
             <div class="relative col-span-full">
-                <x-select-float wire:model='estudiante_id' :disabled="$update">
+                <x-select-float wire:model='estudiante_id' :error="$errors->first('estudiante_id')" class="text-sm">
                     <option value="" hidden selected></option>
-                    @foreach($c_estudiantes as $item)
-                    <option value="{{ $item->id }}">{{ $item->fullname }}</option>
+                    @foreach ($c_estudiantes as $item)
+                        <option value="{{ $item->id }}">{{ $item->fullname }}</option>
                     @endforeach
                 </x-select-float>
                 <x-label-float value="Estudiante" />

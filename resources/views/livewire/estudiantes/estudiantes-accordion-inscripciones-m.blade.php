@@ -9,10 +9,10 @@
                     class="flex items-center justify-between w-full pb-2 text-left rtl:text-right text-gray-700 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400">
                     <div>
                         <button wire:click='editInscripcion({{ $inscripcion }})' class="text-sm text-blue-600 hover:text-blue-400 focus:text-blue-400">
-                            <span class="mr-4">{{ $inscripcion->semestre->nombre }}</span>
-                            <span class="mr-4">[{{ $inscripcion->programa->clave }}]
-                                {{ $inscripcion->programa->nombre }}</span>
-                            <span>{{ $inscripcion->adscripcion->clave }}</span>
+                            <span class="mr-4">{{ $inscripcion->semestre ? $inscripcion->semestre->nombre : '' }}</span>
+                            <span class="mr-4">[{{ $inscripcion->programa ? $inscripcion->programa->clave : '' }}]
+                                {{ $inscripcion->programa ? $inscripcion->programa->nombre : '' }}</span>
+                            <span>{{ $inscripcion->adscripcion ? $inscripcion->adscripcion->clave : '' }}</span>
                         </button>
                     </div>
                     <div>
@@ -50,7 +50,7 @@
                     @foreach ($inscripcion->comite->sortBy('tutor.fullname') as $ct)
                         <div class="tr grid grid-cols-12 gap-0">
                             <div class="td col-span-8">
-                                {{ $ct->tutor->fullname }}
+                                {{ $ct->tutor ? $ct->tutor->fullname : '' }}
                             </div>
                             <div class="td col-span-2"><span
                                     class="pill-primary-600 text-xs {{ !$ct->principal ? 'hidden' : '' }}">Principal</span>

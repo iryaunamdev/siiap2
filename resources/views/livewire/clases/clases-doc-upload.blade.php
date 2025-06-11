@@ -1,61 +1,48 @@
 <div>
-    @include('layouts.delete-confirmation-modal')
-    <x-label value="Acta de calificaciones"></x-label>
-    <div x-data="{ fileName: null, fileData: null }" class="text-left">
-        <!-- File Input -->
-        <div>{{ $message }}</div>
-        <input type="file" class="hidden" wire:model="file" x-ref="filedata"
-            x-on:change="
-                        fileName = $refs.filedata.files[0].name;
-                    " />
+    @if($clase)
+        @include('layouts.delete-confirmation-modal')
 
-        <div wire:loading wire:target="filedata" wire:key="filedata" class="text-center text-xl m-auto"><i
-                class="fa fa-spinner fa-spin mt-2 mx-auto"></i></div>
+        <div x-data="{ fileName: null, fileData: null }" class="text-left">
+            <!-- File Input -->
+            <div>{{ $message }}</div>
+            <input type="file" class="hidden" wire:model="file" x-ref="filedata"
+                x-on:change="
+                            fileName = $refs.filedata.files[0].name;
+                        " />
 
-        <div class="flex justify-between">
-            <div class="flex items-center">
-                <button class="link-primary mr-4" type="button" x-on:click.prevent="$refs.filedata.click()"
-                    title="Seleccionar archivo">
-                    <i class="fa-regular fa-cloud-arrow-up fa-xl"></i>
-                </button>
 
-                @if (!$file and $filename)
-                    <a href="{{ Storage::url('public/clases/' . $filename) }}" class="link-primary text-xs"
-                        target="_blank">
-                        {{ $filename }}
-                    </a>
-                @elseif($file)
-                    <span class="text-xs text-blue-600" x-text="$refs.filedata.files[0].name">
-                    </span>
-                @else
-                    <span class="inline text-sm text-gray-600">
-                        Selecciona un archivo
-                    </span>
-                @endif
-            </div>
 
-            <div class="justify-self-end">
-                @if ($file)
-                    <x-button type="button" class="link-primary rounded-md mt-2 justify-self-end mr-4"
-                        wire:click="store" title="Guardar archivo">
-                        Guardar
-                    </x-button>
-                @endif
+                <x-button class="rounded rounded-md" x-on:click.prevent="$refs.filedata.click()"
+                        title="Seleccionar archivo">
+                        <i class="fa-regular fa-cloud-arrow-up fa-xl mr-1"></i> Seleccionar archivo
+                </x-button>
 
-                @if (!$file and $filename)
-                    <button type="button" class="link-danger mt-2 justify-self-end" wire:click='deleteFile'
-                        title="Eliminar archivo">
-                        <i class="fa-solid fa-trash"></i>
+                <div class="flex justify-between items-start text-xs pt-2 pb-2 mb-1 max-h-7">
+                    <div>
+                        @if($file)
+                        <span class="text-blue-600" x-text="$refs.filedata.files[0].name"></span>
+                        @endif
+                    </div>
+                    <button type="button" class="link-success rounded-md mt-2 self-center {{ !$file ? 'hidden' : ''  }}"
+                            wire:click="store" title="Guardar archivo">
+                            <i class="fa-solid fa-check fa-xl"></i>
                     </button>
-                @endif
-            </div>
+                </div>
 
+            <x-input-error for="filedata" class="mt-2" />
         </div>
 
+        @foreach ($clase->documentos as $doc )
+            <div class="flex justify-between text-sm pl-2 py-1">
+                <a href="{{ Storage::disk('public')->url('clases/' . $doc->filename) }}" class="link-primary text-xs" target="_blank">
+                    {{ $doc->filename }}
+                </a>
 
-
-
-
-        <x-input-error for="filedata" class="mt-2" />
-    </div>
+                <button type="button" class="link-danger justify-self-end" wire:click='deleteFile'
+                            title="Eliminar archivo">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+            </div>
+        @endforeach
+    @endif
 </div>

@@ -18,11 +18,11 @@
     </div>
 
     <div class="grid grid-cols-12 gap-4 px-4 pt-4">
-        <div class="relative col-span-3">
+        {{-- <div class="relative col-span-3">
             <x-input-float type="text" required autofocus
                 placeholder="Clave de trabajador" wire:model='clave' :error="$errors->first('clave')" />
             <x-label-float value="Clave de trabajador" class="text-sm"/>
-        </div>
+        </div>--}}
         <div class="relative col-span-3">
             <x-select-float wire:model='sexo_id' class="text-sm">
                 <option value="" hidden selected></option>
@@ -81,7 +81,16 @@
     </div>
     <hr>
     <div class="grid grid-cols-12 gap-4 px-4 pt-4 pb-4">
-        <div class="relative col-span-5">
+        <div class="relative col-span-full">
+            <x-select-float wire:model='adscripcion_id' :error="$errors->first('adscripcion_id')" class="text-sm">
+                <option value="" hidden selected></option>
+                @foreach ($c_adscripciones as $item)
+                    <option value="{{ $item->id }}">{{ $item->nombre }}</option>
+                @endforeach
+            </x-select-float>
+            <x-label-float value="Adscripción" />
+        </div>
+        <div class="relative col-span-6">
             <x-select-float wire:model='contrato_id' class="text-sm">
                 <option value="" hidden selected></option>
                 @foreach($c_contratos as $item)

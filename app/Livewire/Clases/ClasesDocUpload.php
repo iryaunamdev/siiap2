@@ -20,7 +20,7 @@ class ClasesDocUpload extends Component
     }
 
     public function mount(){
-        if($this->clase->id){
+        if($this->clase and $this->clase->id){
             $this->filename = ClaseDocumento::where('clase_id', $this->clase->id)->first() ?
                               ClaseDocumento::where('clase_id', $this->clase->id)->first()->filename :
                               null ;
@@ -32,35 +32,34 @@ class ClasesDocUpload extends Component
             'file'=>'required|file',
         ]);
 
-        if(!$this->filename){
-            $this->filename = isset($this->clase->semestre) ? $this->clase->semestre->nombre : '0000-0' ;
-            $this->filename .= isset($this->clase->id) ? '_'.str_pad($this->clase->id, 5, '0', STR_PAD_LEFT) : '_00000';
-            $this->filename .= '_acta-calificaciones';
+        $n_actas = ClaseDocumento::where('clase_id', $this->clase->id)->count() + 1;
+
+        $filename = isset($this->clase->semestre) ? $this->clase->semestre->nombre : '0000-0' ;
+        $filename .= isset($this->clase->id) ? '_AC'.str_pad($this->clase->id, 12, '0', STR_PAD_LEFT) : '_AC000000000000';
+        $filename .= '_'.str_pad($n_actas, 2, '0', STR_PAD_LEFT).'.'.$this->file->extension();
+
+       #$this->file->storeAs('clases', $filename)
+        if($this->file->storeAs('clases', $filename, 'public')){
+            $documento = ClaseDocumento::create(
+                [
+                    'clase_id'=>$this->clase->id,
+                    'filename'=>$filename,
+                ]
+            );
+
+            if ($documento->wasRecentlyCreated) {
+                $this->notify('Documento guardado ['.$filename.']', 'Registro creado', 'success');
+            }
+
+            $this->reset([
+                'file',
+                'filename'
+            ]);
+            $this->mount();
         }
-
-        $path = $this->file->storeAs('public/clases', $this->filename);
-
-        $documento = ClaseDocumento::updateOrCreate(
-            [
-                'clase_id'=>$this->clase->id,
-            ],
-            [
-                'clase_id'=>$this->clase->id,
-                'filename'=>$this->filename,
-            ]
-        );
-
-        if ($documento->wasRecentlyCreated) {
-            $this->notify('Documento guardado ['.$path.']', 'Registro creado', 'success');
-        } else {
-            $this->notify('Documento guardado ['.$path.']', 'Registro actualizado', 'info');
+        else{
+            $this->notify('Error al guardar el archivo', 'Error', 'error');
         }
-
-        $this->reset([
-            'file',
-            'filename'
-        ]);
-        $this->mount();
     }
 
     public function deleteFile($filename=null){
@@ -72,11 +71,11 @@ class ClasesDocUpload extends Component
     }
 
     public function delete(){
-        if (Storage::exists('public/clases/'.$this->filename)) {
+        if (Storage::exists('clases/'.$this->filename)) {
             $documento = ClaseDocumento::where('clase_id', $this->clase->id)->first();
             $documento->delete();
 
-            Storage::delete('public/clases/'.$this->filename);
+            Storage::delete('clases/'.$this->filename);
 
             $this->reset(['filename']);
             $this->notify('Registro eliminado correctamente', 'Registro eliminado', 'error');

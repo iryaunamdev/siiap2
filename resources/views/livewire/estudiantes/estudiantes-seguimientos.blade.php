@@ -94,13 +94,15 @@
         <x-slot name="content">
             <form>
                 <div class="relative">
-                    <x-select-float wire:model='tutor_id' :error="$errors->first('tutor_id')">
+                    {{--<x-select-float wire:model='tutor_id' :error="$errors->first('tutor_id')">
                         <option value="" hidden selected></option>
                         @foreach ($c_tutores as $item)
                             <option value="{{ $item->id }}">{{ $item->fullname }}</option>
                         @endforeach
                     </x-select-float>
-                    <x-label-float value="Sinodal" />
+                    <x-label-float value="Sinodal" />--}}
+                    <x-select-search-float :data="$c_tutores" wire:model.live="tutor_id" placeholder="Sinodal"
+                                    stylelabel="text-sm" class="text-sm"/>
                 </div>
             </form>
         </x-slot>

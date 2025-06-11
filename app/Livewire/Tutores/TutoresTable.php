@@ -12,7 +12,7 @@ class TutoresTable extends Component
 {
     use WithPagination;
 
-    public $field = 'fullname', $search, $direction = 'asc', $filters = [];
+    public $field = 'fullname', $search, $direction = 'asc', $filters = [], $paginate=18;
 
     public $c_adscripciones;
 
@@ -42,7 +42,7 @@ class TutoresTable extends Component
         }
 
         return view('livewire.tutores.tutores-table', [
-            'tutores' => $tutores->paginate(10),
+            'tutores' => $tutores->paginate($this->paginate),
         ]);
     }
 

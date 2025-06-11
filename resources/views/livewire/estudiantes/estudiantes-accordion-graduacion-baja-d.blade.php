@@ -5,7 +5,7 @@
     <h3 id="accordion-flush-heading-baja-d">
         <div
             class="flex items-center justify-between w-full pb-2 text-left rtl:text-right text-gray-700 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400">
-            <div class="w-5/4">
+            <div class="w-4/5">
                 <h3 class="uppercase text-xs font-semibold">
                     @if (isset($estudiante->graduacion_d))
                         Graduación
@@ -36,12 +36,12 @@
             <div>
             @if (isset($estudiante->graduacion_d))
                 <button type="button" wire:click='addSinodal({{ $estudiante->graduacion_d->id }})'
-                    class="link-primary mr-4" title="Agregar Sinodal"><i class="fa-solid fa-users-medical"></i></button>
+                    class="link-primary mr-2" title="Agregar Sinodal"><i class="fa-solid fa-users-medical"></i></button>
                 <button type="button" wire:click='deleteConfirmationG({{ $estudiante->graduacion_d }})'
-                    class="link-danger mr-4" title="Eliminar registro de ingreso"><i
+                    class="link-danger mr-2" title="Eliminar registro de ingreso"><i
                         class="fa-regular fa-trash"></i></button>
-                <button type="button" data-accordion-target="#accordion-flush-body-baja-m" aria-expanded="false"
-                    aria-controls="accordion-flush-body-baja-m">
+                <button type="button" data-accordion-target="#accordion-flush-body-baja-d" aria-expanded="false"
+                    aria-controls="accordion-flush-body-baja-d">
                     <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

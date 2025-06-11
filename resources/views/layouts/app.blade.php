@@ -11,11 +11,10 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Laravolt" rel="stylesheet">
+
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
     <!-- Styles -->
     @livewireStyles
 </head>
@@ -40,35 +39,11 @@
 
     <x-banner />
 
-    {{--
-    <div class="">
-        <main class="block min-h-screen pt-16 flex flex-nowwrap text-start border bg-gray-50 dark:border-zinc-900 dark:bg-zinc-700">
-            @livewire('sys.sidemenu')
-            <div class="container h-full w-auto bg-red">
-                {{ $slot }}
-                <footer class="absolute bottom-0 z-20 w-full p-4 mt-4 md:flex md:items-center md:justify-between md:p-6">
-                    <div class="m-auto text-xs text-center">Sistema Integral de Información Académica de Posgrado<br>
-                        Instituto de Radioastronomía y Astrofísica</div>
-                </footer>
-            </div>
-        </main>
-        {{--
-        <!-- Page Content -->
-        <div class="relative w-full h-full items-start justify-center border bg-gray-50 dark:border-zinc-900 dark:bg-zinc-700">
-            @livewire('sys.sidemenu')
-            <main class="w-auto text-start min-h-screen" id="content">
-                {{ $slot }}
-        <footer class="absolute bottom-0 z-20 w-full p-4 mt-4 md:flex md:items-center md:justify-between md:p-6">
-            <div class="m-auto text-xs text-center">Sistema Integral de Información Académica de Posgrado<br>
-                Instituto de Radioastronomía y Astrofísica</div>
-        </footer>
-        </main>
-    </div>
-    --}}
-
     @stack('modals')
-    @livewireScripts
+
 </body>
+@livewireScriptConfig
+
 @stack('scripts')
 
 </html>

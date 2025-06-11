@@ -1,5 +1,5 @@
 <div>
-    <div class="mb-4 flex justify-start">
+    <div class="mb-4 flex justify-start items-stretch">
         <x-input type=text placeholder="Búsqueda general" class="text-sm" wire:model.live='search' />
         <x-secondary-button id="dropdownFilterButton" data-dropdown-toggle="dropdownFilter" class="rounded-md ml-2"
             type="button">
@@ -81,12 +81,9 @@
                 wire:click='clearFilters'>Quitar filtros</x-button>
         </div>
         <div class="relative ml-2">
-            <x-input type="number" class="text-sm w-32" wire:model.live='paginate' title="Registros por página"/>
-            <div class="absolute top-2 start-9 flex items-center text-sm text-gray-700">
-                <span>Registros</span>
-            </div>
+            <x-input type="number" class="text-sm w-32 p-2.5" wire:model.live='paginate' title="Registros por página"/>
+            <span class="absolute text-sm text-gray-400 p-2.5 right-6">Registros</span>
         </div>
-
     </div>
     <div class="table">
         <div class="thead">

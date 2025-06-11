@@ -34,13 +34,22 @@ class Clase extends Model
         'materia_nombre',
     ];
 
+    public $with = [
+        'materia',
+        'tipo',
+        'grado',
+        'semestre',
+        'programa',
+        'adscripcion'
+    ];
+
     public function materia()
     {
         return $this->belongsTo(CatalogoItem::class)->orderBy('nombre');
     }
 
     public function getMateriaNombreAttribute(){
-        return $this->materia->nombre;
+        return isset($this->materia) ? $this->materia->nombre : null;
     }
 
     public function tipo()
@@ -76,6 +85,11 @@ class Clase extends Model
     public function tutores()
     {
         return $this->hasMany(ClaseTutor::class, 'clase_id');
+    }
+
+    public function documentos()
+    {
+        return $this->hasMany(ClaseDocumento::class, 'clase_id');
     }
 
     public function getActivitylogOptions(): LogOptions

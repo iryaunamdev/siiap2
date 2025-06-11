@@ -1,4 +1,6 @@
 @import "./customize.css";
+@import "/node_modules/select2/dist/css/select2.min.css";
+@import "./select2_float_theme.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

@@ -8,8 +8,8 @@
                 class="flex items-center justify-between w-full pb-2 text-left rtl:text-right text-gray-700 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400">
                 <div>
                     <button wire:click='editSeguimiento({{ $seguimiento }})' class="text-sm text-blue-600 hover:text-blue-400 focus:text-blue-400">
-                        <span class="mr-4">{{ $seguimiento->fecha->format('Y/m/d') }}</span>
-                        <span class="mr-4">{{ $seguimiento->tipo->nombre }}</span>
+                        <span class="mr-4">{{ $seguimiento->fecha ? $seguimiento->fecha->format('Y/m/d') : '' }}</span>
+                        <span class="mr-4">{{ $seguimiento->tipo ? $seguimiento->tipo->nombre : '' }}</span>
                         <span class="
                             @if($seguimiento->estatus)
                                 @if (in_array($seguimiento->estatus->clave, ['AP', 'AA', 'A2']))

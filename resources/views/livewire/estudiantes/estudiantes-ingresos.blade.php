@@ -7,15 +7,15 @@
 
     @include('layouts.delete-confirmation-modal')
 
-    <x-dialog-modal wire:model="showIngresosModal" maxWidth="sm">
+    <x-dialog-modal wire:model="showIngresosModal" maxWidth="lg">
         <x-slot name="title">
             {{ $card_title }}
         </x-slot>
         <x-slot name="content">
             <form>
                 <div class="grid grid-cols-12 gap-4">
-                    <div class="relative col-span-12 md:col-span-6">
-                        <x-select-float wire:model='semestre_id' :error="$errors->first('semestre_id')">
+                    <div class="relative col-span-12 md:col-span-6" wire:ignore>
+                        <x-select-float wire:model='semestre_id'>
                             <option value="" hidden selected></option>
                             @foreach($c_semestres as $item)
                                 <option value="{{ $item->id }}">{{ $item->nombre }}</option>
@@ -47,7 +47,7 @@
                     <h3 class="col-span-full text-base border-b text-gray-500">Datos de procedencia</h3>
 
                     <div class="relative col-span-12">
-                        <x-select-float wire:model='universidad_id' :error="$errors->first('universidad_id')" class="text-xs">
+                        <x-select-float wire:model='universidad_id' :error="$errors->first('universidad_id')">
                             <option value="" hidden selected></option>
                             @foreach($c_universidades as $item)
                                 <option value="{{ $item->id }}">{{ $item->nombre }}</option>
@@ -57,7 +57,7 @@
                     </div>
 
                     <div class="relative col-span-12">
-                        <x-select-float wire:model='procedencia_id' :error="$errors->first('procedencia_id')" class="text-xs">
+                        <x-select-float wire:model='procedencia_id' :error="$errors->first('procedencia_id')" >
                             <option value="" hidden selected></option>
                             @foreach($c_procedencias as $item)
                                 <option value="{{ $item->id }}">{{ $item->nombre }}</option>

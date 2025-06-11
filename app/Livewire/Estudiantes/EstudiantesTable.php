@@ -33,8 +33,12 @@ class EstudiantesTable extends Component
             $estudiantes->orderBy('cuenta', $this->direction);
         }
 
+
+
         if(count($this->filters)){
             $estudiantes->with(['inscripciones']);
+
+
             $estudiantes->when(array_key_exists('grado', $this->filters), function($q){
                 $q->when($this->filters['grado']==='NO', function($q){
                     $q->doesntHave('ingresos');
@@ -47,9 +51,22 @@ class EstudiantesTable extends Component
                 $q->whereRelation('inscripciones', 'adscripcion_id', $this->filters['adscripcion']);
             });
 
-            $estudiantes->when(array_key_exists('semestre_i', $this->filters), function($q){
-               $q->whereRelation('inscripciones', 'semestre_id', $this->filters['semestre_i'] );
-            });
+            if(array_key_exists('grado', $this->filters)){
+                if($this->filters['grado'] === 'MAE'){
+                    $estudiantes->when(array_key_exists('semestre_i', $this->filters), function($q){
+                        $q->whereRelation('inscripciones_m', 'semestre_id', $this->filters['semestre_i'] );
+                    });
+                }elseif($this->filters['grado'] === 'DOC'){
+                    $estudiantes->when(array_key_exists('semestre_i', $this->filters), function($q){
+                        $q->whereRelation('inscripciones_d', 'semestre_id', $this->filters['semestre_i'] );
+                    });
+                }
+            }else{
+                $estudiantes->when(array_key_exists('semestre_i', $this->filters), function($q){
+                    $q->whereRelation('inscripciones', 'semestre_id', $this->filters['semestre_i'] );
+                });
+            }
+
 
             $estudiantes->when(array_key_exists('estatus', $this->filters), function($q){
                 $q->when($this->filters['estatus'] === 'G', function($q){
@@ -59,7 +76,15 @@ class EstudiantesTable extends Component
                     $q->has('bajas');
                 })
                 ->when($this->filters['estatus'] === 'A', function($q){
-                    $q->whereRelation('inscripciones.semestre', 'nombre', currentSemestre());
+                    if(array_key_exists('grado', $this->filters)){
+                        if($this->filters['grado'] === 'MAE'){
+                            $q->whereRelation('inscripciones_m.semestre', 'nombre', currentSemestre());
+                        }elseif($this->filters['grado'] === 'DOC'){
+                            $q->whereRelation('inscripciones_d.semestre', 'nombre', currentSemestre());
+                        }
+                    }else{
+                        $q->whereRelation('inscripciones.semestre', 'nombre', currentSemestre());
+                    }
                 });
              });
         }

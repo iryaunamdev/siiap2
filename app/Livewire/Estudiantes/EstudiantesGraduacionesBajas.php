@@ -30,12 +30,11 @@ class EstudiantesGraduacionesBajas extends Component
     }
 
     public function mount(){
-        $this->c_semestres = CatalogoItem::whereRelation('catalogo', 'clave', 'SEM')->get()->sortByDesc('nombre');
+        $this->c_semestres = CatalogoItem::whereRelation('catalogo', 'clave', 'SEM')->orderBy('nombre', 'DESC')->get();
         $this->c_modalidades = CatalogoItem::whereRelation('catalogo', 'clave', 'MGRAD')->get()->sortByDesc('nombre');
         $this->c_tutores = Tutor::all()->sortBy('apellidop');
         $this->c_grados = CatalogoItem::where('clave', 'MAE')->orWhere('clave', 'DOC')->get();
         $this->c_adscripciones = CatalogoItem::whereRelation('catalogo', 'clave', 'ADSC')->get()->sortBy('nombre');
-
         $this->c_tipos_bajas = CatalogoItem::whereRelation('catalogo', 'clave', 'TBAJAS')->get()->sortBy('nombre');
         $this->c_motivos = CatalogoItem::whereRelation('catalogo', 'clave', 'MBAJA')->get()->sortBy('nombre');
     }

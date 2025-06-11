@@ -24,7 +24,7 @@ class EstudiantesEdit extends Component
     public $apellidop;
 
     public $cuenta, $orcid, $apellidom, $rfc, $curp, $sexo_id, $nacionalidad_id, $lugar_nacimiento, $fecha_nacimiento, $email, $email_alt, $photo_url;
-    public $c_sexos, $c_paises;
+    public $c_sexos, $c_paises, $s_paises;
 
     public function render()
     {
@@ -66,6 +66,10 @@ class EstudiantesEdit extends Component
             ->where('activo', true)
             ->orderBy('nombre')
             ->get();
+        /*$this->s_paises = CatalogoItem::whereRelation('catalogo', 'clave', 'C_PAISES')
+            ->where('activo', true)
+            ->orderBy('nombre')
+            ->get()->pluck('nombre', 'id')->toArray();*/
 
     }
 

@@ -1,6 +1,7 @@
 <?php
 
 use Livewire\Livewire;
+use App\Livewire\UploadFile;
 use App\Livewire\Sys\Usuarios;
 use App\Livewire\Sys\Catalogos;
 use App\Livewire\Clases\ClasesEdit;
@@ -8,9 +9,10 @@ use App\Livewire\Clases\ClasesIndex;
 use App\Livewire\Tutores\TutoresEdit;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Tutores\TutoresIndex;
+use App\Livewire\Sys\DatabaseTablesList;
+use App\Http\Controllers\rawDataController;
 use App\Livewire\Estudiantes\EstudiantesEdit;
 use App\Livewire\Estudiantes\EstudiantesIndex;
-use App\Livewire\Sys\DatabaseTablesList;
 
 /*Route::get('/', function () {
     return view('welcome');
@@ -74,6 +76,19 @@ Route::group([
     Route::get('/', ClasesIndex::class)->name('clases');
     Route::get('registro/{id?}', ClasesEdit::class)->name('clases.edit');
 });
+
+Route::get('test', UploadFile::class)->name('test');
+
+//RawData
+Route::get('rawdata/{token}/estudiantes', [rawDataController::class, 'estudiantesJSON'])->name('estudiantes-raw');
+Route::get('rawdata/{token}/graduaciones', [rawDataController::class, 'graduacionesJSON'])->name('graduaciones-raw');
+Route::get('rawdata/{token}/bajas', [rawDataController::class, 'bajasJSON'])->name('bajas-raw');
+Route::get('rawdata/{token}/tutores', [rawDataController::class, 'tutoresJSON'])->name('tutores-raw');
+Route::get('rawdata/{token}/comite-tutor', [rawDataController::class, 'comitetutorJSON'])->name('comitetutor-raw');
+Route::get('rawdata/{token}/clases', [rawDataController::class, 'clasesJSON'])->name('clases-raw');
+Route::get('rawdata/{token}/clases-tutores', [rawDataController::class, 'clasesTutoresJSON'])->name('clases_t-raw');
+Route::get('rawdata/{token}/clases-estudiantes', [rawDataController::class, 'clasesEstudiantesJSON'])->name('clases_e-raw');
+
 
 
 //Corregir Bug para que livewire funcione en produccion

@@ -6,6 +6,7 @@ use App\Models\Clase;
 use App\Models\sys\CatalogoItem;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
 
 class ClasesEdit extends Component
@@ -16,8 +17,6 @@ class ClasesEdit extends Component
     ];
 
     public $clase, $clase_id;
-
-    #[Validate('required', message:'Campo obligatorio')]
     public $materia_id, $semestre_id, $grado_id;
     public $adscripcion_id, $programa_id, $tipo_id, $titulo_alt, $grupo, $horas, $creditos;
 
@@ -71,7 +70,14 @@ class ClasesEdit extends Component
     }
 
     public function store(){
-        $this->validate();
+        $this->validate([
+            'materia_id' => 'required',
+            'tipo_id' => 'required',
+            'grado_id' => 'required',
+            'semestre_id' => 'required',
+            'programa_id' => 'required',
+            'adscripcion_id' => 'required'
+        ]);
 
         $clase = Clase::updateOrCreate(
             ['id' => $this->clase_id],
@@ -97,4 +103,16 @@ class ClasesEdit extends Component
 
         $this->mount($clase->id);
     }
+
+    public function selectTipo($value){
+        $tipo = CatalogoItem::findOrFail($value)->clave;
+        if(in_array($tipo, ['BA', 'OB', 'OE'])){
+            $this->horas = 80;
+            $this->creditos = 10;
+        }elseif($tipo == 'OP'){
+            $this->horas = 48;
+            $this->creditos = 6;
+        }
+    }
+
 }

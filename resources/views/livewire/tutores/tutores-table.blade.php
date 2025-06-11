@@ -31,22 +31,22 @@
             <!-- Clear filters -->
             <x-button class="rounded-md w-full mt-2 {{ !count($filters) ? 'hidden' : '' }}" wire:click='clearFilters'>Quitar filtros</x-button>
         </div>
+
+        <div class="relative ml-2">
+            <x-input type="number" class="text-sm w-32 p-2.5" wire:model.live='paginate' title="Registros por página"/>
+            <span class="absolute text-sm text-gray-400 p-2.5 right-6">Registros</span>
+        </div>
     </div>
 
 
     <div class="table">
         <div class="thead">
             <div class="grid grid-cols-12 gap-0">
-                <div class="col-span-2 grid grid-cols-3 gap-0">
-                    <div></div>
-                    <x-ordering-button ordering="true" :direction="$field === 'clave' ? $direction : null" wire:click="sortBy('clave')"
-                        class="th col-span-2">No. Trabajador</x-ordering-button>
-                </div>
                 <x-ordering-button :ordering="true" :direction="$field === 'fullname' ? $direction : null" wire:click="sortBy('fullname')"
-                    class="th col-span-3">
+                    class="th col-span-4">
                     Nombre del Tutor</x-ordering-button>
                 <x-ordering-button :ordering="false" class="th col-span-2">Adscripción</x-ordering-button>
-                <div class="col-span-5 grid grid-cols-8 gap-0">
+                <div class="col-span-6 grid grid-cols-8 gap-0">
                     <x-ordering-button :ordering="false" class="th text-center">Activo</x-ordering-button>
                     <x-ordering-button :ordering="false" class="th text-center" title="Tutorias de maestría (actuales/total)">T. MAE.</x-ordering-button>
                     <x-ordering-button :ordering="false" class="th text-center" title="Tutorias de doctorado (actuales/total)">T. DOC.</x-ordering-button>
@@ -61,35 +61,29 @@
         @forelse ($tutores as $tutor)
             <div class="tr-stripp border-t {{ $loop->iteration % 2 ? 'bg-white' : 'bg-gray-50' }} grid grid-cols-12 gap-0 "
                 wire:loading.class.delay='opacity-50'>
-                <div class="col-span-2 grid grid-cols-3 gap-0">
-                    <div class="td-1">
-                        <img src="{{ Avatar::create(strtoupper($tutor->fullname))->toBase64(); }}" alt="{{ $tutor->fullname }}" class="w-10"/>
-                    </div>
-                    <div class="td-1 col-span-2">{{ $tutor->clave }}</div>
-                </div>
-                <div class="td-1 col-span-3"><a href="{{ route('tutores.edit', $tutor->id) }}"
+                <div class="td-2 col-span-4"><a href="{{ route('tutores.edit', $tutor->id) }}"
                         class="link-primary">{{ $tutor->fullname }}</a></div>
 
-                <div class="td-1 col-span-2">{{ $tutor->adscripcion->clave }}</div>
+                <div class="td-2 col-span-2 text-xs">{{ $tutor->adscripcion ? $tutor->adscripcion->clave : '' }}</div>
 
-                <div class="col-span-5 grid grid-cols-8 gap-0">
-                    <div class="td-1 text-center">
+                <div class="col-span-6 grid grid-cols-8 gap-0">
+                    <div class="td-2 text-center">
                         <i class="fa-solid fa-circle fa-sm {{ $tutor->activo ? 'text-green-600' : 'text-red-600' }}"></i>
 
                     </div>
-                    <div class="td-1 text-center text-xs">
+                    <div class="td-2 text-center text-xs">
                         @if(count($tutor->comites_m))
                         <span class="{{ count($tutor->comites_m->where('inscripcion.semestre.nombre', currentSemestre())->sortByDesc('inscripcion.semestre.nombre')->groupBy('estudiante_id')) ? 'text-blue-600' : 'text-gray-400' }}">{{ count($tutor->comites_m->where('inscripcion.semestre.nombre', currentSemestre())->sortByDesc('inscripcion.semestre.nombre')->groupBy('estudiante_id')) }}</span> /
                         {{ count($tutor->comites_m->sortByDesc('inscripcion.semestre.nombre')->groupBy('estudiante_id')) }}
                         @endif
                     </div>
-                    <div class="td-1 text-center text-xs">
+                    <div class="td-2 text-center text-xs">
                         @if(count($tutor->comites_d))
                         <span class="{{ count($tutor->comites_d->where('inscripcion.semestre.nombre', currentSemestre())->sortByDesc('inscripcion.semestre.nombre')->groupBy('estudiante_id')) ? 'text-blue-600' : 'text-gray-400' }}">{{ count($tutor->comites_d->where('inscripcion.semestre.nombre', currentSemestre())->sortByDesc('inscripcion.semestre.nombre')->groupBy('estudiante_id')) }}</span> /
                         {{ count($tutor->comites_d->sortByDesc('inscripcion.semestre.nombre')->groupBy('estudiante_id')) }}
                         @endif
                     </div>
-                    <div class="td-1 text-center text-xs">
+                    <div class="td-2 text-center text-xs">
                         @if(count($tutor->clases))
                         <span class="{{ count($tutor->clases->where('clase.semestre.nombre', currentSemestre())) ? 'text-blue-600' : 'text-gray-400' }}">{{ count($tutor->clases->where('clase.semestre.nombre', currentSemestre())) }}</span> /
                         {{ count($tutor->clases) }}
