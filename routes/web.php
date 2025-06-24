@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 use App\Livewire\Tutores\TutoresIndex;
 use App\Livewire\Sys\DatabaseTablesList;
 use App\Http\Controllers\rawDataController;
+use App\Livewire\Consultas\ConsultaSeguimientos;
 use App\Livewire\Estudiantes\EstudiantesEdit;
 use App\Livewire\Estudiantes\EstudiantesIndex;
 
@@ -75,6 +76,18 @@ Route::group([
 ], function(){
     Route::get('/', ClasesIndex::class)->name('clases');
     Route::get('registro/{id?}', ClasesEdit::class)->name('clases.edit');
+});
+
+Route::group([
+    'prefix' => 'consultas',
+    'middleware'=>[
+        'auth:sanctum',
+        config('jetstream.auth_session'),
+        'verified'
+    ]
+], function(){
+    Route::get('seguimiento-academico', ConsultaSeguimientos::class)->name('seguimiento-academico');
+
 });
 
 Route::get('test', UploadFile::class)->name('test');

@@ -1,7 +1,19 @@
 <aside id="logo-sidebar" class="z-40 w-64 m-h-screen transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
     <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
+        @hasanyrole(['admin', 'editor', 'comite'])
+
         <ul class="space-y-2 font-medium">
+            <h5 id="drawer-navigation-label" class="text-xs font-semibold text-gray-500 uppercase dark:text-gray-400 mt-4">Consultas</h5>
+            <li>
+                <a href="{{ route('seguimiento-academico') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <i class="fa-solid fa-arrow-progress"></i>
+                    <span class="flex-1 ms-3 whitespace-nowrap text-sm">Seguimiento Académico</span>
+                </a>
+            </li>
         </ul>
+        @endhasanyrole
+
+
         @hasanyrole(['admin', 'editor'])
         <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
             {{--
@@ -15,6 +27,7 @@
                 </a>
             </li>
         --}}
+            <h5 id="drawer-navigation-label" class="text-xs font-semibold text-gray-500 uppercase dark:text-gray-400 mt-4">Registro</h5>
             <li>
                 <a href="{{ route('estudiantes') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <i class="fa-solid fa-user-graduate"></i>
