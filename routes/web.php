@@ -86,8 +86,7 @@ Route::group([
         'verified'
     ]
 ], function(){
-    Route::get('seguimiento-academicogit ', ConsultaSeguimientos::class)->name('seguimiento-academico');
-
+    Route::get('seguimiento-academico', ConsultaSeguimientos::class)->name('seguimiento-academico');
 });
 
 Route::get('test', UploadFile::class)->name('test');

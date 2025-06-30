@@ -14,7 +14,6 @@
         "laravel/tinker": "^2.9",
         "laravolt/avatar": "^5.1",
         "livewire/livewire": "^3.0",
-        "ramonrietdijk/livewire-tables": "^4.3",
         "rappasoft/laravel-livewire-tables": "^3.4",
         "reedware/laravel-relation-joins": "^6.0",
         "spatie/laravel-activitylog": "^4.8",
